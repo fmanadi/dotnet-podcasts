@@ -33,7 +33,7 @@ jobs:
                --parameters acrName="$($acrName)" 
 
       - name: Login to ACR
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ${{ secrets.ACR_NAME }}.azurecr.io
           username: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientId }}
@@ -44,7 +44,7 @@ jobs:
           dotnet-version: "7.0.x"
 
       - name: Build Podcast Updater
-        run: dotnet publish -c Release -r linux-x64 /t:PublishContainer src/Services/Podcasts/Podcast.Updater.Worker/Podcast.Updater.Worker.csproj -p ContainerRegistry=${{ secrets.ACR_NAME }}.azurecr.io -p ContainerImageTag=${{ github.sha }}
+        run: dotnet publish -c Release --sc -r linux-x64 /t:PublishContainer src/Services/Podcasts/Podcast.Updater.Worker/Podcast.Updater.Worker.csproj -p ContainerRegistry=${{ secrets.ACR_NAME }}.azurecr.io -p ContainerImageTag=${{ github.sha }}
 
       - name: Build Podcast API
         run: dotnet publish -c Release -r linux-x64 -p ContainerRegistry=${{ secrets.ACR_NAME }}.azurecr.io -p ContainerImageTag=${{ github.sha }} -p PublishProfile=DefaultContainer src/Services/Podcasts/Podcast.API/Podcast.API.csproj

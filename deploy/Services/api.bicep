@@ -130,7 +130,7 @@ resource apiContainerApp 'Microsoft.App/containerApps@2022-03-01' = {
       secrets: [
         {
           name: 'feedqueue'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=core.windows.net;AccountKey=${listKeys(storageAccount.id, '2019-06-01').keys[0].value}'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=core.windows.net;AccountKey=${storageAccount.listKeys().keys[0].value}'
         }
         {
           name: 'podcastdb'
@@ -208,7 +208,7 @@ resource ingestionContainerApp 'Microsoft.App/containerApps@2022-03-01' = if (de
       secrets: [
         {
           name: 'feedqueue'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=core.windows.net;AccountKey=${listKeys(storageAccount.id, '2019-06-01').keys[0].value}'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=core.windows.net;AccountKey=${storageAccount.listKeys().keys[0].value}'
         }
         {
           name: 'podcastdb'

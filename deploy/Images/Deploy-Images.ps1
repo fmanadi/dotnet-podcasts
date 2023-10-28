@@ -5,6 +5,7 @@ Param(
     [parameter(Mandatory=$true)][string]$storageName
 )
 
+az configure --defaults group=$resourceGroup
 $storage = $(az storage account show -n $storageName -g $resourceGroup -o json | ConvertFrom-Json)
 
 if (-not $storage) {
