@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Discover Categories', () => {
   
-  const categories = ['Microsoft', 'Mobile', 'Community', 'Web', 'Desktop'];
+  const categories = ['Microsoft', 'Mobile', 'Community', 'M365', 'Desktop'];
   for (const category of categories) {
     test(`should allow me to browse category ${category}`, async ({ page }) => {
       await page.getByRole('list').getByRole('link', { name: category }).click();
