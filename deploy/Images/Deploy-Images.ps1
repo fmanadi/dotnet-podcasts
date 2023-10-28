@@ -21,7 +21,7 @@ $containerExists = $(az storage container exists --name "covers" --connection-st
 if (!$containerExists) {
 
     Write-Host "Connecting to storage and creating containers" -ForegroundColor Green
-    az storage container create --name "covers" --public-access blob --connection-string "$constr" 
+    az storage container create --name "covers" --public-access blob --connection-string "$constr"
     Write-Host "Copying images..." -ForegroundColor Green
 
     $accountName=$storage.name
